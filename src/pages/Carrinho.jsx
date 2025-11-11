@@ -7,6 +7,12 @@ export default function Carrinho() {
   const navigate = useNavigate();
   const [carrinho, setCarrinho] = useState([]);
 
+  let total = 0;
+  for (let i = 0; i < carrinho.length; i++) {
+    total += carrinho[i].valor * carrinho[i].quantidade;
+  }
+
+
   useEffect(() => {
     const salvo = JSON.parse(localStorage.getItem("carrinho")) || [];
     setCarrinho(salvo);
@@ -57,15 +63,21 @@ export default function Carrinho() {
 
                 <button onClick={() => atualizar(item, item.quantidade + 1)}>+</button>
 
-                <button style={{ marginLeft: "0px" }} onClick={() => remover(item.id)}>Remover</button>
+                <button style={{ marginLeft: "10px",width:"100%" }} onClick={() => remover(item.id)}>Remover</button>
 
               </div>
             </div>
           ))
         )}
+        {carrinho.length > 0 && (
+        <h3 style={{ marginTop: "20px", backgroundColor: "#2c2b2b", padding: "10px", color: "white", borderRadius:"20px"}}>
+          Total: R${total},00
+        </h3>
+        )}
         <button type="button" className="pedido" onClick={navegarParaPedido} style={{ marginTop: "20px" }}>
           Finalizar Pedido
         </button>
+        
       </main>
       <Footer />
     </>
