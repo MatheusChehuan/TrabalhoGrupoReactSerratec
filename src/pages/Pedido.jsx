@@ -8,6 +8,11 @@ export default function Pedido() {
   const [mensagem, setMensagem] = useState("");
 
 
+  let total = 0;
+  for (let i = 0; i < carrinho.length; i++) {
+    total += carrinho[i].valor * carrinho[i].quantidade;
+  }
+
   useEffect(() => {
     const itensLocal = JSON.parse(localStorage.getItem("carrinho")) || [];
     setCarrinho(itensLocal);
@@ -58,7 +63,14 @@ export default function Pedido() {
                   </li>
                 ))}
               </ul>
-              <button onClick={finalizarCompra}>Confirmar Compra</button>
+              <button style={{width:"100%"}} onClick={finalizarCompra}>Confirmar Compra</button>
+              
+              {carrinho.length > 0 && (
+              <h3 style={{ marginTop: "20px" }}>
+                Total do pedido: R${total},00
+              </h3>
+            )}
+
             </>
           )}
 
