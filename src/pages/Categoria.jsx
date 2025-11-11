@@ -13,7 +13,7 @@ export default function Categoria() {
     api.get("/produto/listar").then((res) => {
       const todos = res.data;
       const filtrados = todos.filter(
-  (     p) => p.categoria?.toLowerCase() === nomeCategoria.toLowerCase()
+      (p) => p.categoria?.toLowerCase() === nomeCategoria.toLowerCase()
            );
       setProdutos(filtrados);
     });
@@ -41,12 +41,7 @@ export default function Categoria() {
         <h1>Categoria: {nomeCategoria}</h1>
         <div className="produtos">
           {produtos.map((p) => (
-            <ProdutoCard
-              key={p.id}
-              produto={p}
-              onAdd={() => adicionarAoCarrinho(p)}
-            />
-          ))}
+            <ProdutoCard key={p.id} produto={p} onAdd={() => adicionarAoCarrinho(p)}/>))}
         </div>
       </main>
       <Footer />
