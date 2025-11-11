@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
 
 export default function Carrinho() {
+  const navigate = useNavigate();
   const [carrinho, setCarrinho] = useState([]);
 
   useEffect(() => {
@@ -27,6 +29,10 @@ export default function Carrinho() {
     localStorage.setItem("carrinho", JSON.stringify(atualizado));
   };
 
+  const navegarParaPedido = () => {
+    navigate("/pedidos/inserir");
+  };
+
   return (
     <>
       <Navbar />
@@ -41,7 +47,7 @@ export default function Carrinho() {
               
               <h3>{item.nome}</h3>
               
-              <p>Preço: R${item.valor}</p>
+              <p>Preço: R${item.valor},00</p>
               
               <div>
                 
@@ -57,6 +63,9 @@ export default function Carrinho() {
             </div>
           ))
         )}
+        <button type="button" className="pedido" onClick={navegarParaPedido} style={{marginTop: "20px"}}>
+            Finalizar Pedido
+          </button>
       </main>
       <Footer />
     </>
