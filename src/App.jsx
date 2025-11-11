@@ -5,6 +5,8 @@ import Carrinho from "./pages/Carrinho";
 import Login from "./pages/Login";
 import UsuarioForm from "./pages/CriarUsuario";
 import Pedido from "./pages/Pedido";
+import ProtectedRoute from "./components/ProtectedRoute";
+import AdminProduto from "./pages/AdminProduto";
 
 export default function App() {
   return (
@@ -16,6 +18,14 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/usuarios/novo" element={<UsuarioForm />} />
         <Route path="/pedidos/inserir" element={<Pedido />} />
+        <Route
+          path="/admin/produtos"
+          element={
+            <ProtectedRoute>
+              <AdminProduto />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
-import apiPost from "../services/apipost";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
